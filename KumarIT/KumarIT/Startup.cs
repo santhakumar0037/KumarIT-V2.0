@@ -25,6 +25,11 @@ namespace KumarIT
                 app.UseDeveloperExceptionPage();
             }
 
+            FileServerOptions fileServerOptions = new FileServerOptions();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("default.html");
+            app.UseFileServer();
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World");
