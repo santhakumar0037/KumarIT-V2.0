@@ -4,20 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Net.Http;
+
 namespace KumarIT.Controllers
 {
     public class HomeController : Controller
     {
-        public string Index()
+        [HttpGet]
+        public async Task<byte[]> Index(string url)
         {
-            WebClient client = new WebClient();
-            string address = "https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx";
+            using (var client = new HttpClient())
+            {
+                using (var result = await client.GetAsync("https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx"))
+                {
+                    if (result.IsSuccessStatusCode) { 
+                        var contentStream =  await result.Content.ReadAsStreamAsync();
+                        return FileStreamResult(contentStream, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "Cv.docx");
+                    }
+                }                 
+            }
+            return null;
 
-            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string fileName = desktop + "\\Santha Kumar Resume.docx";
-            client.DownloadFile(address, fileName);
-     
-            return "Santha Kumar Resume Downloaded";
+            //    WebClient client = new WebClient();
+            //var address = new Uri("https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx");
+
+            //string fileName = "Santha Kumar Resume.docx";
+            //client.DownloadFileAsync(address, fileName);
+
+            // 
+            //return Ok();
         }
     }
 }
