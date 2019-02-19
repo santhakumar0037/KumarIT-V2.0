@@ -14,7 +14,7 @@ namespace KumarIT.Controllers
     public class HomeController : ControllerBase
     {
         const string DownloadUrl = "https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx";
-        const string wordContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+        const string WordContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -23,7 +23,7 @@ namespace KumarIT.Controllers
 
             var httpResponseMessage = await httpClient.GetStreamAsync(DownloadUrl);
 
-            return File(httpResponseMessage, wordContentType);
+            return File(httpResponseMessage, WordContentType);
         }
     }
 }
