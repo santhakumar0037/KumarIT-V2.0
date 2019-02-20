@@ -11,15 +11,22 @@ namespace KumarIT.Controllers
     public class HomeController : Controller
     {
         [HttpGet]
-        public async Task<byte[]> Index(string url)
+        public async Task<byte[]> Index(string id)
         {
+            
             using (var client = new HttpClient())
             {
                 using (var result = await client.GetAsync("https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx"))
                 {
-                    if (result.IsSuccessStatusCode) { 
-                        var contentStream =  await result.Content.ReadAsStreamAsync();
-                        return FileStreamResult(contentStream, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "Cv.docx");
+                    if (result.IsSuccessStatusCode) {
+
+                        var memory = new MemoryStream();
+                        using (var stream = new FileStream(path, FileMode.Open))
+                        {
+                            await stream.CopyToAsync(memory);
+                        }
+                        memory.Position = 0;
+                        return File(memory, GetContentType(path), Path.GetFileName(path));
                     }
                 }                 
             }
