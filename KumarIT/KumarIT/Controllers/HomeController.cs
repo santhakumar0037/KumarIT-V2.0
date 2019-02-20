@@ -1,45 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using Microsoft.Net.Http.Headers;
 
 namespace KumarIT.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
+        const string DownloadUrl = "https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx";
+        const string WordContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
         [HttpGet]
-        public async Task<byte[]> Index(string id)
+        public async Task<IActionResult> Index()
         {
-            
-            using (var client = new HttpClient())
-            {
-                using (var result = await client.GetAsync("https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx"))
-                {
-                    if (result.IsSuccessStatusCode) {
+            var httpClient = new HttpClient();
 
-                        var memory = new MemoryStream();
-                        using (var stream = new FileStream(path, FileMode.Open))
-                        {
-                            await stream.CopyToAsync(memory);
-                        }
-                        memory.Position = 0;
-                        return File(memory, GetContentType(path), Path.GetFileName(path));
-                    }
-                }                 
-            }
-            return null;
 
-            //    WebClient client = new WebClient();
-            //var address = new Uri("https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx");
+            var httpResponseMessage = await httpClient.GetStreamAsync(DownloadUrl);
 
-            //string fileName = "Santha Kumar Resume.docx";
-            //client.DownloadFileAsync(address, fileName);
-
-            // 
-            //return Ok();
+            return File(httpResponseMessage, WordContentType);
         }
     }
 }
