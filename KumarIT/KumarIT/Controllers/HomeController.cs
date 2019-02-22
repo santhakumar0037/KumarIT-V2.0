@@ -15,15 +15,11 @@ namespace KumarIT.Controllers
     {
         const string DownloadUrl = "https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx";
         const string WordContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var httpClient = new HttpClient();
-
-
             var httpResponseMessage = await httpClient.GetStreamAsync(DownloadUrl);
-
             return File(httpResponseMessage, WordContentType);
         }
     }
