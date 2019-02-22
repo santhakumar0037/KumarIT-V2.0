@@ -9,6 +9,8 @@ namespace KumarIT.Controllers
     {
         public async Task<ActionResult> IndexAsync()
         {
+            KumarResumeAPI.Controllers.CvServiceController resume = new KumarResumeAPI.Controllers.CvServiceController();
+            resume.GetAsync();
          return null;
         }
     }
