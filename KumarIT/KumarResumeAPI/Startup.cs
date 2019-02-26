@@ -24,7 +24,11 @@ namespace KumarResumeAPI
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("ResumeConfiguration.json");
+                .AddJsonFile(config =>
+                {
+                    config.Path = "ResumeConfiguration.json";
+                    config.ReloadOnChange = true;
+                });
             Configuration = builder.Build();
         }
 
