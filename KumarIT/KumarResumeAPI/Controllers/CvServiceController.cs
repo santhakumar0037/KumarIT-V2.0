@@ -8,23 +8,27 @@ using System.Net.Http;
 
 namespace KumarResumeAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class CvServiceController : ControllerBase
     {
-        const string DownloadUrl = "https://s3-ap-southeast-2.amazonaws.com/s.santhakumar/Resume/Santha+kumar+Resume.docx";
+        Resume CvUrl = new Resume();
+
         const string WordContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
-            [HttpGet]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> GetAsync()
         {
+            var DownloadUrl =  CvUrl.ResumeService();
 
             var httpClient = new HttpClient();
 
             var httpResponseMessage = await httpClient.GetStreamAsync(DownloadUrl);
 
             return File(httpResponseMessage, WordContentType);
+
         }
     }
 }
-}
+
