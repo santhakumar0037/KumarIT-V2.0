@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KumarResumeAPI", "KumarResumeAPI\KumarResumeAPI.csproj", "{7AE770D5-60EE-434D-8D4C-D27EF4627ADA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KumarIT-Web", "KumarIT-Web\KumarIT-Web.csproj", "{816CA2B5-6B70-4C2F-8DDC-1DB30DCBD1A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KIT-Web", "KIT-Web\KIT-Web.csproj", "{7DC6441F-4524-41DD-90D7-09674F2BAF8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{7AE770D5-60EE-434D-8D4C-D27EF4627ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AE770D5-60EE-434D-8D4C-D27EF4627ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE770D5-60EE-434D-8D4C-D27EF4627ADA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{816CA2B5-6B70-4C2F-8DDC-1DB30DCBD1A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{816CA2B5-6B70-4C2F-8DDC-1DB30DCBD1A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{816CA2B5-6B70-4C2F-8DDC-1DB30DCBD1A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{816CA2B5-6B70-4C2F-8DDC-1DB30DCBD1A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC6441F-4524-41DD-90D7-09674F2BAF8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC6441F-4524-41DD-90D7-09674F2BAF8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC6441F-4524-41DD-90D7-09674F2BAF8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC6441F-4524-41DD-90D7-09674F2BAF8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
